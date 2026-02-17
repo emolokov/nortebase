@@ -1,0 +1,57 @@
+Create a single-page landing page for "Norte.Base" — a digital product store for men over 40.
+
+Design requirements:
+- Color scheme: dark navy blue (#2C3E50) background, light gray text (#ECF0F1), accent color: soft blue (#3498DB)
+- Font: Inter (sans-serif, clean, professional)
+- Style: minimalist, masculine, no decorative elements, no gradients or sparkles
+- Layout: centered content, full-width sections, mobile-responsive
+- No animations, no parallax, no complex JavaScript
+
+Page structure:
+
+1. Header (sticky):
+   - Logo/name: "Norte.Base" (white, bold, Inter 24px)
+   - Tagline below: "Herramientas prácticas para hombres después de los 40" (light gray, Inter 14px)
+
+2. Hero section (full width, dark navy background):
+   - Main headline: "No necesitas más teoría. Necesitas un punto de referencia claro — y acciones concretas que funcionen en la vida real." (white, Inter 32px, bold, max-width 800px, centered)
+   - Subheadline: "Aquí encontrarás guías y checklists descargables sobre salud, finanzas, estrés y bienestar emocional. Todo en formato PDF. Acceso inmediato. Sin complicaciones." (light gray, Inter 18px, max-width 700px, centered, margin-top 20px)
+   - CTA button below: "Ver todas las herramientas" (background: #3498DB, white text, padding 12px 32px, rounded corners 4px, bold, margin-top 40px)
+
+3. Products grid section (3 columns on desktop, 1 column on mobile):
+   - Section title: "Herramientas disponibles" (white, Inter 28px, bold, centered, margin-bottom 40px)
+   - Display 10 product cards in a grid:
+     Each card should contain:
+     - Product cover image placeholder (16:9 ratio, dark gray background)
+     - Product title (white, Inter 18px, bold)
+     - Short description (light gray, Inter 14px)
+     - Price badge: "$9" (soft blue background, white text, small rounded badge)
+     - "Comprar" button (outline style, white border, white text on hover: soft blue background)
+
+   Products to display (in this order):
+   1. Title: "Guía: Ejercicios en casa después de 40" | Desc: "4 ejercicios simples, sin equipo. 10–15 min/día."
+   2. Title: "Checklist: Desayuno saludable en 5 minutos" | Desc: "3 combinaciones equilibradas. Sin complicaciones."
+   3. Title: "Guía: Manejo del estrés — 7 técnicas" | Desc: "Técnicas de 1–5 minutos. Sin apps ni terapia."
+   4. Title: "Guía: Hablar sobre tu estado emocional" | Desc: "3 frases exactas. Sin vulnerabilidad forzada."
+   5. Title: "Checklist: 30 días sin azúcar" | Desc: "Plan realista. Sin privación ni dietas extremas."
+   6. Title: "Guía: Encontrar amigos después del cambio" | Desc: "Protocolo de 3 pasos. Sin apps de citas."
+   7. Title: "Checklist: 10 señales de agotamiento" | Desc: "Identifica burnout antes de colapsar."
+   8. Title: "Guía: Educación financiera para principiantes" | Desc: "5 fundamentos. Sin tecnicismos ni teoría."
+   9. Title: "Checklist: Seguridad en internet para +50" | Desc: "7 reglas contra estafadores. Sin paranoia."
+   10. Title: "Guía: 100 palabras de idioma en un mes" | Desc: "Plan de 4 semanas. 10 min/día."
+
+   Each "Comprar" button should link to a placeholder URL: "#product-1", "#product-2", etc. (I will replace with actual Gumroad links later)
+
+4. Footer:
+   - Centered text: "© 2024 Norte.Base — Herramientas prácticas para hombres después de los 40" (light gray, Inter 14px)
+   - Small note below: "Todos los productos son PDF descargables instantáneamente después del pago." (darker gray, Inter 12px)
+
+Technical requirements:
+- Use HTML5 and CSS3 only (no frameworks like Bootstrap)
+- Make it fully responsive (mobile-first approach)
+- Use CSS Grid or Flexbox for the products grid
+- Include proper meta tags for viewport and charset
+- Use Google Fonts (Inter) via CDN link
+- Keep code clean and well-commented
+
+Output: Single HTML file with embedded CSS in <style> tag.

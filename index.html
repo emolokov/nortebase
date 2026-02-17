@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norte.Base — Herramientas prácticas para después de los 40</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #2C3E50;
+      color: #ECF0F1;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 0 16px 40px;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 32px 16px 32px;
+      border-bottom: 1px solid rgba(236, 240, 241, 0.12);
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 0.9375rem;
+      color: rgba(236, 240, 241, 0.9);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* Social proof */
+    .social-proof {
+      text-align: center;
+      color: #3498DB;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 12px 0 8px;
+    }
+
+    /* CTA line */
+    .cta-line {
+      text-align: center;
+      color: #D5DBDB;
+      font-size: 1rem;
+      margin: 0 0 24px;
+      line-height: 1.5;
+    }
+
+    .cta-line strong {
+      color: #ECF0F1;
+    }
+
+    /* Product buttons */
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 24px;
+    }
+
+    .product-btn {
+      display: block;
+      width: 100%;
+      min-height: 56px;
+      padding: 18px 20px;
+      background-color: rgba(52, 73, 94, 0.6);
+      border: 1px solid rgba(236, 240, 241, 0.08);
+      border-radius: 12px;
+      text-align: left;
+      text-decoration: none;
+      color: inherit;
+      font-family: inherit;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .product-btn:hover {
+      background-color: rgba(52, 152, 219, 0.2);
+      border-color: rgba(52, 152, 219, 0.35);
+      box-shadow: 0 0 0 1px rgba(52, 152, 219, 0.2);
+    }
+
+    .product-btn:focus-visible {
+      outline: 2px solid #3498DB;
+      outline-offset: 2px;
+    }
+
+    .product-btn__row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .product-btn__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .product-btn__title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .product-btn__desc {
+      font-size: 0.875rem;
+      color: rgba(236, 240, 241, 0.85);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .product-btn__price {
+      display: inline-block;
+      background-color: #E74C3C;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    /* Show more button */
+    .show-more {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .show-more__btn {
+      display: inline-block;
+      min-height: 48px;
+      padding: 12px 32px;
+      background-color: #3498DB;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      margin: 24px auto;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      line-height: 1.4;
+    }
+
+    .show-more__btn:hover {
+      background-color: #2980B9;
+      transform: translateY(-2px);
+    }
+
+    .show-more__btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    /* Section divider */
+    .section-divider {
+      height: 1px;
+      background: #34495E;
+      margin: 32px 0;
+      border: 0;
+    }
+
+    /* Section for remaining products */
+    .more-section {
+      padding-top: 16px;
+    }
+
+    .more-section::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(52, 152, 219, 0.5), transparent);
+      margin: 0 auto 24px;
+      border-radius: 1px;
+    }
+
+    .more-section__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ECF0F1;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 16px 24px;
+      margin-top: 28px;
+      border-top: 1px solid rgba(236, 240, 241, 0.08);
+    }
+
+    .footer p {
+      font-size: 0.8125rem;
+      color: rgba(236, 240, 241, 0.85);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .footer-guarantee {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #2ECC71;
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ========== Mobile-first responsive ========== */
+    @media (max-width: 480px) {
+      body {
+        padding: 0 12px 32px;
+      }
+
+      .header {
+        padding: 24px 12px 24px;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .header p {
+        font-size: 0.875rem;
+      }
+
+      .social-proof {
+        font-size: 14px;
+        margin: 10px 0 6px;
+      }
+
+      .cta-line {
+        font-size: 0.9375rem;
+        margin: 0 0 20px;
+      }
+
+      .product-list {
+        gap: 10px;
+        padding-top: 20px;
+      }
+
+      .product-btn {
+        min-height: 52px;
+        padding: 16px 16px;
+        border-radius: 10px;
+      }
+
+      .product-btn__title {
+        font-size: 0.9375rem;
+      }
+
+      .product-btn__desc {
+        font-size: 0.8125rem;
+      }
+
+      .product-btn__price {
+        font-size: 16px;
+        padding: 4px 10px;
+      }
+
+      .show-more {
+        padding: 20px 12px;
+      }
+
+      .show-more__btn {
+        min-height: 48px;
+        padding: 14px 24px;
+        font-size: 0.9375rem;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .section-divider {
+        margin: 24px 0;
+      }
+
+      .more-section__title {
+        font-size: 0.9375rem;
+      }
+
+      .footer {
+        padding: 24px 12px 20px;
+        margin-top: 24px;
+      }
+
+      .footer p,
+      .footer-guarantee {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (min-width: 481px) {
+      body {
+        padding: 0 24px 48px;
+      }
+
+      .header {
+        padding: 40px 24px 36px;
+      }
+
+      .header h1 {
+        font-size: 1.875rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .social-proof {
+        font-size: 16px;
+      }
+
+      .cta-line {
+        font-size: 1.0625rem;
+      }
+
+      .product-btn {
+        min-height: 56px;
+      }
+
+      .product-btn__title {
+        font-size: 1.0625rem;
+      }
+
+      .product-btn__desc {
+        font-size: 0.9375rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 1. Header -->
+    <header class="header">
+      <h1>Norte.Base</h1>
+      <p>Herramientas prácticas para hombres y mujeres después de los 40</p>
+    </header>
+
+    <p class="social-proof">👤 Más de 1.200 personas han descargado estas herramientas</p>
+    <p class="cta-line"><strong>Guías y checklists en PDF.</strong> Un pago, descarga inmediata.</p>
+
+    <!-- 2. Top 3 products -->
+    <nav class="product-list">
+      <a href="https://quietmindworks.gumroad.com/l/ymvgoo" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: Ejercicios en casa después de 40</div>
+            <div class="product-btn__desc">4 ejercicios simples. Sin equipo.</div>
+          </div>
+          <span class="product-btn__price">$9</span>
+        </div>
+      </a>
+
+      <a href="https://quietmindworks.gumroad.com/l/ymuorz" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Checklist: 10 señales de agotamiento</div>
+            <div class="product-btn__desc">Identifica burnout antes de colapsar.</div>
+          </div>
+          <span class="product-btn__price">$9</span>
+        </div>
+      </a>
+
+      <a href="https://quietmindworks.gumroad.com/l/zurgfi" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: Educación financiera para principiantes</div>
+            <div class="product-btn__desc">5 fundamentos. Sin tecnicismos.</div>
+          </div>
+          <span class="product-btn__price">$9</span>
+        </div>
+      </a>
+    </nav>
+
+    <!-- 3. Show more -->
+    <div class="show-more">
+      <a href="#more-tools" class="show-more__btn">→ Ver todas las herramientas</a>
+    </div>
+
+    <!-- Section divider -->
+    <hr class="section-divider">
+
+    <!-- 4. Remaining 7 products -->
+    <section class="more-section" id="more-tools">
+      <h2 class="more-section__title">Más herramientas</h2>
+      <nav class="product-list">
+<a href="https://quietmindworks.gumroad.com/l/iuwemh" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Checklist: Desayuno saludable en 5 minutos</div>
+              <div class="product-btn__desc">3 combinaciones equilibradas. Sin complicaciones.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/ypmtvo" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: Manejo del estrés — 7 técnicas</div>
+              <div class="product-btn__desc">Técnicas de 1–5 minutos. Sin apps ni terapia.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/jqyls" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: Hablar sobre tu estado emocional</div>
+              <div class="product-btn__desc">3 frases exactas. Sin vulnerabilidad forzada.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/nnmebb" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Checklist: 30 días sin azúcar</div>
+              <div class="product-btn__desc">Plan realista. Sin privación ni dietas extremas.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/edldjd" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: Encontrar amigos después del cambio</div>
+              <div class="product-btn__desc">Protocolo de 3 pasos. Sin apps de citas.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/krdnet" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Checklist: Seguridad en internet para +50</div>
+              <div class="product-btn__desc">7 reglas contra estafadores. Sin paranoia.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+
+<a href="https://quietmindworks.gumroad.com/l/qheeg" class="product-btn" target="_blank" rel="noopener noreferrer">
+        <div class="product-btn__row">
+          <div class="product-btn__content">
+            <div class="product-btn__title">Guía: 100 palabras de idioma en un mes</div>
+              <div class="product-btn__desc">Plan de 4 semanas. 10 min/día.</div>
+            </div>
+            <span class="product-btn__price">$9</span>
+          </div>
+        </a>
+      </nav>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer class="footer">
+      <p>© 2024 Norte.Base — PDF descargables instantáneamente</p>
+      <p class="footer-guarantee">✅ 30 días de garantía de devolución</p>
+    </footer>
+  </div>
+</body>
+</html>
