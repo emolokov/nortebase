@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Norte.Base — Herramientas prácticas para después de los 40</title>
+  <!-- Google tag (gtag.js) with Consent Mode -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5B52FKMCWJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('config', 'G-5B52FKMCWJ');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -586,19 +601,11 @@
   <script>
     (function() {
       var CONSENT_KEY = 'nortebase_cookie_consent';
-      var GA_ID = 'G-5B52FKMCWJ';
 
-      function loadGoogleAnalytics() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', GA_ID);
-
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        document.head.appendChild(s);
+      function grantAnalyticsConsent() {
+        if (window.gtag) {
+          window.gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        }
       }
 
       function hideBanner() {
@@ -611,14 +618,14 @@
           localStorage.setItem(CONSENT_KEY, accepted ? 'accepted' : 'rejected');
         } catch (e) {}
         hideBanner();
-        if (accepted) loadGoogleAnalytics();
+        if (accepted) grantAnalyticsConsent();
       }
 
       var saved = '';
       try { saved = localStorage.getItem(CONSENT_KEY); } catch (e) {}
 
       if (saved === 'accepted') {
-        loadGoogleAnalytics();
+        grantAnalyticsConsent();
         hideBanner();
       } else if (saved === 'rejected') {
         hideBanner();
